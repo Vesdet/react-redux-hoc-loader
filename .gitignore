@@ -1,0 +1,8 @@
+# ide
+/.idea
+
+# dependencies
+/node-modules
+
+# production
+/dist
