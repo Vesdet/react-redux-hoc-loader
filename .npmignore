@@ -1,0 +1,8 @@
+# .npmignore
+node_modules
+dist-example
+src
+example
+.babelrc
+.editorconfig
+.gitignore

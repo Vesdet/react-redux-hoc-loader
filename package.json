@@ -1,32 +1,47 @@
 {
   "name": "react-redux-loader",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Loader HOC for React with reducer for Redux",
+  "main": "dist/index.js",
+  "module": "esm/index.js",
   "scripts": {
+    "build": "npm run transpile:commonjs && npm run transpile:esm",
+    "example:build": "webpack --config example/webpack.config.babel.js --mode=production",
     "example:run": "webpack-dev-server --config example/webpack.config.babel.js --mode=development",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "transpile:commonjs": "cross-env BABEL_ENV=commonjs babel src -d dist",
+    "transpile:esm": "cross-env BABEL_ENV=esm babel src -d esm",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Vesdet/react-redux-loader.git"
   },
+  "keywords": [
+    "react",
+    "redux",
+    "HOC"
+  ],
   "author": "Vesdet",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Vesdet/react-redux-loader/issues"
   },
   "homepage": "https://github.com/Vesdet/react-redux-loader#readme",
-  "dependencies": {
+  "peerDependencies": {
     "react": "^16.8.4",
     "react-redux": "^6.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "html-webpack-plugin": "^3.2.0",
+    "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-redux": "^6.0.1",
     "redux": "^4.0.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",

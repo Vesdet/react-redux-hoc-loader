@@ -28,7 +28,7 @@ const withLoading = (...loadersNames) => Component => {
   };
 
   const displayName = Component.displayName || Component.name;
-  Wrapper.displayName = `withLoading(${displayName})`;
+  Wrapper.displayName = `WithLoading(${displayName})`;
   Wrapper.WrappedComponent = Component;
 
   return connect(
