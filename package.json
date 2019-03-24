@@ -1,6 +1,6 @@
 {
   "name": "react-redux-hoc-loader",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Loader HOC for React with reducer for Redux",
   "main": "dist/index.js",
   "module": "esm/index.js",
@@ -20,6 +20,7 @@
   "keywords": [
     "react",
     "redux",
+    "loader",
     "HOC"
   ],
   "author": "Vesdet",
