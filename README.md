@@ -1,1 +1,3 @@
-# react-redux-loader
+# react-redux-hoc-loader
+
+``In development``
