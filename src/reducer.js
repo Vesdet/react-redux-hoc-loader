@@ -1,6 +1,6 @@
 // Actions
-const START_LOADING = "loading/START";
-const STOP_LOADING = "loading/STOP";
+const START_LOADING = "@@loading/START";
+const STOP_LOADING = "@@loading/STOP";
 
 // Reducer
 export default function reducer(state = {}, action = {}) {

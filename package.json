@@ -1,6 +1,6 @@
 {
   "name": "react-redux-hoc-loader",
-  "version": "0.3.1",
+  "version": "1.0.0",
   "description": "Loader HOC for React with reducer for Redux",
   "main": "dist/index.js",
   "module": "esm/index.js",
@@ -8,10 +8,10 @@
     "build": "npm run transpile:commonjs && npm run transpile:esm",
     "example:build": "webpack --config example/webpack.config.babel.js --mode=production",
     "example:run": "webpack-dev-server --config example/webpack.config.babel.js --mode=development",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest ./test",
     "transpile:commonjs": "cross-env BABEL_ENV=commonjs babel src -d dist",
     "transpile:esm": "cross-env BABEL_ENV=esm babel src -d esm",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run test && npm run build"
   },
   "repository": {
     "type": "git",
@@ -38,8 +38,12 @@
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.5.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",
@@ -47,5 +51,8 @@
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
+  },
+  "jest": {
+    "setupFilesAfterEnv": ["<rootDir>/test/setupTests.js"]
   }
 }

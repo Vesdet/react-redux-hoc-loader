@@ -1,4 +1,4 @@
-[![NPM](https://img.shields.io/npm/v/react-redux-hoc-loader.svg)](https://www.npmjs.com/package/react-redux-hoc-loader)
+[![NPM](https://img.shields.io/npm/v/react-redux-hoc-loader.svg?style=flat-square)](https://www.npmjs.com/package/react-redux-hoc-loader)
 # react-redux-hoc-loader
 > React-Redux HOC and Reducer for managing status of loaders in redux state
 
@@ -16,6 +16,7 @@ Add `loaders` reducer to list of your reducers.
 ```jsx
 // index.js
 import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
 import { reducer as loadersReducer } from "react-redux-loader";
 
 const store = createStore(
@@ -52,7 +53,7 @@ const CustomComponent = ({ loaders, ...props }) => {
   );
 };
 
-export withLoading(LOADER_NAME)(CustomComponent);
+export default withLoading(LOADER_NAME)(CustomComponent);
 ```
 
 HOC provides `loaders` property to your component.
@@ -84,7 +85,7 @@ export const asyncAction = async dispatch => {
   dispatch(startLoading(LOADER_NAME));
   /* your async code, e.g.: */
   await fetch("/smth");
-  /* end of asyn code */
+  /* end of async code */
   dispatch(stopLoading(LOADER_NAME));
 }
 ```

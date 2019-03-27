@@ -1,8 +1,10 @@
 # .npmignore
 .idea
+coverage
 node_modules
 dist-example
 src
+test
 example
 .babelrc
 .editorconfig
