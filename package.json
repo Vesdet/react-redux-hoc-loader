@@ -1,6 +1,6 @@
 {
   "name": "react-redux-hoc-loader",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Loader HOC for React with reducer for Redux",
   "main": "dist/index.js",
   "module": "esm/index.js",
@@ -53,6 +53,8 @@
     "webpack-dev-server": "^3.2.1"
   },
   "jest": {
-    "setupFilesAfterEnv": ["<rootDir>/test/setupTests.js"]
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/setupTests.js"
+    ]
   }
 }

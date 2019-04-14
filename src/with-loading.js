@@ -12,6 +12,15 @@ const mapDispatchToProps = {
   stopLoading
 };
 
+function extendedStartLoading(name, start, stop, callback, ...arg) {
+  start(name);
+  if (!callback) return;
+
+  return Promise.resolve(
+    callback(...arg)
+  ).finally(() => stop(name));
+}
+
 const withLoading = (...loadersNames) => Component => {
   const Wrapper = props => {
     const { states, dispatch, startLoading, stopLoading, ...rest } = props;
@@ -20,7 +29,7 @@ const withLoading = (...loadersNames) => Component => {
     loadersNames.forEach(name => {
       loaders[name] = {
         status: states[name] || false,
-        start: () => startLoading(name),
+        start: (callback, ...arg) => extendedStartLoading(name, startLoading, stopLoading, callback, ...arg),
         stop: () => stopLoading(name)
       };
     });

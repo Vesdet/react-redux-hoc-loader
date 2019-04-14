@@ -17,7 +17,7 @@ Add `loaders` reducer to list of your reducers.
 // index.js
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
-import { reducer as loadersReducer } from "react-redux-loader";
+import { reducer as loadersReducer } from "react-redux-hoc-loader";
 
 const store = createStore(
   combineReducers({
@@ -64,16 +64,29 @@ Each object contains following properties for working with loader:
 | Property | Type | Description |
 |:--------------|:--------------|:--------------|
 | `status` | boolean | Status of you loader |
-| `start` | function | Method for start of a loader |
+| `start` | function | Method for start of a loader.<br/>Can receive async or not callback as a first argument.<br/>See Options of Usage to get more details. |
 | `stop` | function |  Method for stop of a loader |
 
 ## Options of Usage
 
+**1.**
 You can push more that one loader name to HOC:
 ```jsx
 withLoading("firstLoader", "secondLoader" /*, ... */)(Component)
 ```
 
+**2.** 
+You can pass your async callback and arguments for it to `start` method of loader.<br/>
+In this case loader will be started before the start and stopped after the end of your callback<br/>
+Example of usage `start` function with async callback:
+```js
+  // async callback 
+  loader.start(fetch, "/smth", { method: "DELETE" })
+  // sync callback
+  loader.start(console.log, "smth")
+```
+
+**3.** 
 If you want to start/stop loaders from your action creators, **"react-redux-hoc-loader"** provides
 functions `startLoading` and `stopLoading` to manage it:
 ```js

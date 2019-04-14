@@ -14,6 +14,12 @@ const store = createStore(
 
 const LOADER_NAME = "example";
 
+const timer = (time) => {
+  return new Promise((res, rej) => {
+    setTimeout(() => rej(200), time);
+  });
+};
+
 const App = ({ loaders }) => {
   const loader = loaders[LOADER_NAME];
   return (
@@ -23,6 +29,10 @@ const App = ({ loaders }) => {
       <button onClick={() => loader.start()}>Start loading</button>
       {" | "}
       <button onClick={() => loader.stop()}>Stop loading</button>
+      {" | "}
+      <button onClick={() => loader.start(timer, 2000).then(console.log, console.error)}>
+        Start loading with async callback
+      </button>
     </>
   );
 };
