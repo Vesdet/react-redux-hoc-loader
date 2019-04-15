@@ -57,8 +57,34 @@ describe("WithLoading HOC", () => {
     expect(stopLoading).toBeCalledWith(loadersNames[0]);
   });
 
+  it("should start and stop loader when async callback passed to start()", async () => {
+    async function test(arg) {
+      return Promise.resolve(arg);
+    }
+    const resolvedValue = "test";
+
+    const loaders = Component.props().loaders;
+    const result = await loaders[loadersNames[0]].start(test, resolvedValue);
+
+    expect(startLoading).toBeCalledWith(loadersNames[0]);
+    expect(stopLoading).toBeCalledWith(loadersNames[0]);
+    expect(result).toBe(resolvedValue);
+  });
+
+  it("should start and stop loader when sync callback passed to start()", () => {
+    const loaders = Component.props().loaders;
+    console.log = jest.fn();
+    const resolvedValue = "test";
+
+    loaders[loadersNames[0]].start(console.log, resolvedValue);
+
+    expect(startLoading).toBeCalledWith(loadersNames[0]);
+    expect(stopLoading).toBeCalledWith(loadersNames[0]);
+    expect(console.log).toBeCalledWith(resolvedValue);
+  });
+
   it("should pass displayName and WrappedComponent to WrappedComponent", () => {
     expect(WithLoadingComponent.displayName).toBe(`WithLoading(${"CustomComponent"})`);
     expect(WithLoadingComponent.WrappedComponent).toEqual(CustomComponent);
-  })
+  });
 });
